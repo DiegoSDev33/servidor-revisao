@@ -8,7 +8,7 @@ const authRoutes = require("./routes/auth")
 const productsRoutes = require("./routes/product")
 
 
-
+server.use(app.static('public'))
 
 
 

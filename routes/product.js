@@ -24,13 +24,17 @@ router.get('/product', async (req, res) =>{
     
     const allProds = await productRepo.getAll();
 
-   
+   console.log( req.session.userId)
 
 
   res.send(mycards({content:allProds}))
 
 })
 
+router.get('bla', (req, res) => {
+
+    res.send("OK")
+})
 
 
 

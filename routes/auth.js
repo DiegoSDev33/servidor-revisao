@@ -9,6 +9,24 @@ const screenSignup = require('../VIEWS/signup')
 const screenLogin = require('../VIEWS/login')
 const screenLayout = require('../VIEWS/prod-layout')
 
+
+
+router.post('/login',async (req, res) => {
+
+    const user = await userRepo.getOneBy({email, password})
+    req.session.userId = user.id
+    if(user){
+        res.send("usuario encotrado")
+    }else{
+        res.send("usuario nao encontrado")
+    }
+})
+
+router.get("/sair", (req, res) => {
+    req.session = null;
+    res.send("sessao finalizada ...")
+})
+
 router.post('/add-login', (req, res) => {
     //devolver uma tela com produtos feitos
     // verificar user

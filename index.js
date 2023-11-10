@@ -6,9 +6,20 @@ const bodyParser = require("body-parser")
 
 const authRoutes = require("./routes/auth")
 const productsRoutes = require("./routes/product")
+const validSession = require("./controller/verify_session")
 
+const cookieSession = require("cookie-session")
 
 server.use(app.static('public'))
+
+
+server.use(cookieSession({ 
+
+    keys:['gfjdslkj543648gjdkh565'] // devemos na key, inserir caracteres aleatórios 
+  
+  })) 
+  
+   
 
 
 
@@ -20,9 +31,11 @@ server.use(bodyParser.json())
 
 server.use('/admin',authRoutes)
 
-server.use('/admin',productsRoutes)
+server.use('/admin',validSession,productsRoutes)
  
 
 server.listen(3001, () =>{
     console.log("servidor no ar ...")
 })
+
+

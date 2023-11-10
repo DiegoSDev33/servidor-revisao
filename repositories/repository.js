@@ -37,6 +37,27 @@ await this.writeAll(records)
 }
 
 
+// Criar o getOneBy
+async getOneBy(filtros){
+  const records = await this.getAll()
+
+  for(let record of records ){
+    let encontrado = true;
+
+    for (let key in filtros){
+      if(records[key] !== filtro[key]){
+        encontrado = false;
+
+      }
+    }
+    if(encontrado){
+      return record
+    }
+  }
+}
+
+
+
   async getAll(){
     return JSON.parse(await fs.promises.readFile(this.filename))
   }
@@ -47,3 +68,6 @@ await this.writeAll(records)
 
 
 };
+
+
+
